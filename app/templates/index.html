@@ -3,64 +3,424 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FitBuddy - AI Workout Generator</title>
+
+  <title>FitBuddy - AI Fitness Planner</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="{{ url_for('static', path='css/style.css') }}">
 </head>
+
 <body>
-  <div class="container">
-    <h1>💪 FitBuddy - AI Workout Generator</h1>
 
-    {% if error %}
-    <div class="alert alert-error" role="alert">⚠️ {{ error }}</div>
-    {% endif %}
+  <!-- Background glow -->
+  <div class="bg-glow glow-one"></div>
+  <div class="bg-glow glow-two"></div>
 
-    <form action="/generate" method="post" id="plan-form">
-      <label for="username">Name:</label>
-      <input type="text" id="username" name="username" maxlength="100" required
-             value="{{ form.get('username', '') }}">
+  <!-- NAVBAR -->
+  <nav class="navbar">
 
-      <label for="user_id">User ID:</label>
-      <input type="number" id="user_id" name="user_id" min="1" step="1" required
-             value="{{ form.get('user_id', '') }}">
+    <a href="/" class="logo">
+      <span class="logo-icon">⚡</span>
+      <span>FitBuddy <small>AI</small></span>
+    </a>
 
-      <label for="age">Age:</label>
-      <input type="number" id="age" name="age" min="10" max="100" step="1" required
-             value="{{ form.get('age', '') }}">
+    <div class="nav-links">
+      <a href="/" class="active">Home</a>
+      <a href="/view-all-users">Users</a>
+    </div>
 
-      <label for="weight">Weight (kg):</label>
-      <input type="number" id="weight" name="weight" min="1" max="500" step="0.1" required
-             value="{{ form.get('weight', '') }}">
+  </nav>
 
-      <label for="goal">Fitness Goal:</label>
-      <input type="text" id="goal" name="goal" maxlength="200" required
-             placeholder="e.g., weight loss, flexibility"
-             value="{{ form.get('goal', '') }}">
 
-      {% set current = form.get('intensity', 'Low') %}
-      <label for="intensity">Workout Intensity:</label>
-      <select id="intensity" name="intensity">
-        <option value="Low"    {{ 'selected' if current == 'Low' }}>Low</option>
-        <option value="Medium" {{ 'selected' if current == 'Medium' }}>Medium</option>
-        <option value="High"   {{ 'selected' if current == 'High' }}>High</option>
-      </select>
+  <main>
 
-      <button type="submit" id="submit-btn">Generate Plan</button>
-    </form>
+    <!-- HERO SECTION -->
+    <section class="hero">
 
-    <p class="footer-links"><a href="/view-all-users">View all users &amp; plans</a></p>
-  </div>
+      <div class="hero-content">
+
+        <div class="eyebrow">
+          <span></span>
+          AI-POWERED FITNESS
+        </div>
+
+        <h1>
+          Train smarter.<br>
+          <span>Live stronger.</span>
+        </h1>
+
+        <p>
+          Build a personalized fitness plan with AI.
+          Tell FitBuddy your goal, fitness level and workout intensity,
+          and let Gemini create your 7-day workout journey.
+        </p>
+
+
+        <!-- FEATURES -->
+
+        <div class="features">
+
+          <div class="feature">
+            <div class="feature-icon">✦</div>
+            <div>
+              <strong>AI Powered</strong>
+              <small>Personalized plans</small>
+            </div>
+          </div>
+
+          <div class="feature">
+            <div class="feature-icon">7</div>
+            <div>
+              <strong>7 Days</strong>
+              <small>Structured routine</small>
+            </div>
+          </div>
+
+          <div class="feature">
+            <div class="feature-icon">◎</div>
+            <div>
+              <strong>Goal Focused</strong>
+              <small>Built for you</small>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- PLANNER CARD -->
+
+      <div class="planner-card">
+
+        <div class="card-header">
+
+          <div>
+            <span class="card-label">YOUR FITNESS JOURNEY</span>
+            <h2>Build your plan</h2>
+          </div>
+
+          <div class="ai-badge">
+            ✦ AI
+          </div>
+
+        </div>
+
+
+        {% if error %}
+        <div class="alert">
+          ⚠️ {{ error }}
+        </div>
+        {% endif %}
+
+
+        <form action="/generate" method="post" id="plan-form">
+
+          <div class="form-grid">
+
+
+            <!-- NAME -->
+
+            <div class="field full">
+
+              <label for="username">
+                Name
+              </label>
+
+              <input
+                type="text"
+                id="username"
+                name="username"
+                maxlength="100"
+                placeholder="Enter your name"
+                required
+                value="{{ form.get('username', '') }}"
+              >
+
+            </div>
+
+
+            <!-- USER ID -->
+
+            <div class="field">
+
+              <label for="user_id">
+                User ID
+              </label>
+
+              <input
+                type="number"
+                id="user_id"
+                name="user_id"
+                min="1"
+                step="1"
+                placeholder="e.g. 1001"
+                required
+                value="{{ form.get('user_id', '') }}"
+              >
+
+            </div>
+
+
+            <!-- AGE -->
+
+            <div class="field">
+
+              <label for="age">
+                Age
+              </label>
+
+              <input
+                type="number"
+                id="age"
+                name="age"
+                min="10"
+                max="100"
+                step="1"
+                placeholder="Age"
+                required
+                value="{{ form.get('age', '') }}"
+              >
+
+            </div>
+
+
+            <!-- WEIGHT -->
+
+            <div class="field">
+
+              <label for="weight">
+                Weight <span>(kg)</span>
+              </label>
+
+              <input
+                type="number"
+                id="weight"
+                name="weight"
+                min="1"
+                max="500"
+                step="0.1"
+                placeholder="e.g. 65"
+                required
+                value="{{ form.get('weight', '') }}"
+              >
+
+            </div>
+
+
+            <!-- INTENSITY -->
+
+            <div class="field">
+
+              <label for="intensity">
+                Workout Intensity
+              </label>
+
+              {% set current = form.get('intensity', 'Low') %}
+
+              <select id="intensity" name="intensity">
+
+                <option value="Low"
+                  {{ 'selected' if current == 'Low' }}>
+                  Low
+                </option>
+
+                <option value="Medium"
+                  {{ 'selected' if current == 'Medium' }}>
+                  Medium
+                </option>
+
+                <option value="High"
+                  {{ 'selected' if current == 'High' }}>
+                  High
+                </option>
+
+              </select>
+
+            </div>
+
+
+            <!-- GOAL -->
+
+            <div class="field full">
+
+              <label for="goal">
+                Fitness Goal
+              </label>
+
+              <input
+                type="text"
+                id="goal"
+                name="goal"
+                maxlength="200"
+                placeholder="e.g. muscle gain, weight loss, flexibility"
+                required
+                value="{{ form.get('goal', '') }}"
+              >
+
+            </div>
+
+          </div>
+
+
+          <!-- GENERATE BUTTON -->
+
+          <button
+            type="submit"
+            id="submit-btn"
+            class="generate-btn"
+          >
+
+            <span>Generate My Plan</span>
+
+            <span class="arrow">
+              →
+            </span>
+
+          </button>
+
+        </form>
+
+
+        <div class="card-note">
+          🔒 Your information is used to personalize your fitness plan.
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- HOW IT WORKS -->
+
+    <section class="how-section">
+
+      <div class="section-title">
+
+        <span>HOW IT WORKS</span>
+
+        <h2>
+          Your fitness journey, simplified.
+        </h2>
+
+      </div>
+
+
+      <div class="steps">
+
+
+        <div class="step">
+
+          <div class="step-number">
+            01
+          </div>
+
+          <h3>
+            Tell us about you
+          </h3>
+
+          <p>
+            Enter your basic details, fitness goal,
+            and preferred workout intensity.
+          </p>
+
+        </div>
+
+
+        <div class="step">
+
+          <div class="step-number">
+            02
+          </div>
+
+          <h3>
+            Let AI build it
+          </h3>
+
+          <p>
+            FitBuddy uses Gemini AI to create
+            your personalized 7-day workout plan.
+          </p>
+
+        </div>
+
+
+        <div class="step">
+
+          <div class="step-number">
+            03
+          </div>
+
+          <h3>
+            Start your journey
+          </h3>
+
+          <p>
+            Follow your plan, stay consistent,
+            and keep moving toward your goal.
+          </p>
+
+        </div>
+
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <span>
+      © FitBuddy
+    </span>
+
+    <a href="/view-all-users">
+      View all users &amp; plans →
+    </a>
+
+  </footer>
+
+
+  <!-- BUTTON SCRIPT -->
 
   <script>
-    var btn = document.getElementById('submit-btn');
-    document.getElementById('plan-form').addEventListener('submit', function () {
-      btn.disabled = true;
-      btn.textContent = 'Generating your plan… this can take up to a minute';
+
+    const btn = document.getElementById("submit-btn");
+
+    document
+      .getElementById("plan-form")
+      .addEventListener("submit", function () {
+
+        btn.disabled = true;
+
+        btn.querySelector("span").textContent =
+          "Generating your plan…";
+
+      });
+
+
+    window.addEventListener("pageshow", function (event) {
+
+      if (event.persisted) {
+
+        btn.disabled = false;
+
+        btn.querySelector("span").textContent =
+          "Generate My Plan";
+
+      }
+
     });
-    window.addEventListener('pageshow', function (e) {   // back button restores the page from cache
-      if (e.persisted) { btn.disabled = false; btn.textContent = 'Generate Plan'; }
-    });
+
   </script>
+
 </body>
 </html>
