@@ -1,68 +1,280 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Your FitBuddy Workout Plan</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="{{ url_for('static', path='css/style.css') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FitBuddy AI - Your Workout Plan</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', path='css/style.css') }}"
+    >
 </head>
+
 <body>
-  <div class="container wide">
-    <h1>🏋️‍♀️ Your Personalized Workout Plan</h1>
 
-    {% if success_message %}
-    <div class="alert alert-success" role="status">✅ {{ success_message }}</div>
-    {% endif %}
-    {% if error %}
-    <div class="alert alert-error" role="alert">⚠️ {{ error }}</div>
-    {% endif %}
+<div class="bg-glow"></div>
 
-    <h2>User Information</h2>
-    <div class="info">
-      <p><strong>Name:</strong> {{ username }}</p>
-      <p><strong>User ID:</strong> {{ user_id }}</p>
-      <p><strong>Age:</strong> {{ age }}</p>
-      <p><strong>Weight:</strong> {{ weight }} kg</p>
-      <p><strong>Goal:</strong> {{ goal }}</p>
-      <p><strong>Intensity:</strong> {{ intensity }}</p>
+<!-- =========================
+     NAVBAR
+========================= -->
+
+<nav class="navbar">
+
+    <div class="logo">
+        FitBuddy AI
     </div>
 
-    <h2>{{ plan_title | default('Workout Plan') }}</h2>
-    <pre class="plan">{{ workout_plan }}</pre>
+    <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/view-all-users">Users</a>
+    </div>
 
-    <h2>💡 Nutrition Tip</h2>
-    <p class="tip">{{ nutrition_tip }}</p>
+</nav>
 
-    <h2>📝 Share Your Feedback</h2>
-    <form action="/submit-feedback" method="post" id="feedback-form">
-      <label for="user_id">Your Unique User ID:</label>
-      <input type="number" id="user_id" name="user_id" min="1" step="1" required
-             placeholder="Enter the same User ID used to generate your plan" value="{{ user_id }}">
 
-      <label for="feedback">Your Feedback:</label>
-      <textarea id="feedback" name="feedback" required minlength="3" maxlength="1000"
-                placeholder="Let us know how we can improve your plan..."></textarea>
+<!-- =========================
+     RESULT SECTION
+========================= -->
 
-      <input type="hidden" name="nutrition_tip" value="{{ nutrition_tip }}">
-      <button type="submit" id="feedback-btn">Submit Feedback</button>
-    </form>
+<main class="planner-section">
 
-    <p class="footer-links">
-      <a href="/">← Create another plan</a> &nbsp;·&nbsp; <a href="/view-all-users">View all users &amp; plans</a>
-    </p>
-  </div>
+    <div class="planner-card">
 
-  <script>
-    var btn = document.getElementById('feedback-btn');
-    document.getElementById('feedback-form').addEventListener('submit', function () {
-      btn.disabled = true;
-      btn.textContent = 'Updating your plan… this can take up to a minute';
-    });
-    window.addEventListener('pageshow', function (e) {
-      if (e.persisted) { btn.disabled = false; btn.textContent = 'Submit Feedback'; }
-    });
-  </script>
+        <div class="card-header">
+
+            <div>
+                <h2>
+                    {{ plan_title }}
+                </h2>
+
+                <p>
+                    Your personalized AI-generated fitness plan
+                </p>
+            </div>
+
+            <div class="ai-badge">
+                ✦ Gemini AI
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             USER INFORMATION
+        ========================= -->
+
+        <div class="form-grid">
+
+            <div class="field">
+
+                <label>Name</label>
+
+                <input
+                    type="text"
+                    value="{{ username }}"
+                    readonly
+                >
+
+            </div>
+
+
+            <div class="field">
+
+                <label>User ID</label>
+
+                <input
+                    type="text"
+                    value="{{ user_id }}"
+                    readonly
+                >
+
+            </div>
+
+
+            <div class="field">
+
+                <label>Age</label>
+
+                <input
+                    type="text"
+                    value="{{ age }}"
+                    readonly
+                >
+
+            </div>
+
+
+            <div class="field">
+
+                <label>Weight</label>
+
+                <input
+                    type="text"
+                    value="{{ weight }}"
+                    readonly
+                >
+
+            </div>
+
+
+            <div class="field">
+
+                <label>Fitness Goal</label>
+
+                <input
+                    type="text"
+                    value="{{ goal }}"
+                    readonly
+                >
+
+            </div>
+
+
+            <div class="field">
+
+                <label>Workout Intensity</label>
+
+                <input
+                    type="text"
+                    value="{{ intensity }}"
+                    readonly
+                >
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             WORKOUT PLAN
+        ========================= -->
+
+        <div style="margin-top: 35px;">
+
+            <h2 style="margin-bottom: 15px;">
+                Workout Plan
+            </h2>
+
+            <div
+                style="
+                    background: #0b1712;
+                    border: 1px solid rgba(255,255,255,0.08);
+                    border-radius: 14px;
+                    padding: 22px;
+                    color: #dce8e1;
+                    line-height: 1.7;
+                    white-space: pre-wrap;
+                    overflow-wrap: anywhere;
+                "
+            >{{ workout_plan }}</div>
+
+        </div>
+
+
+        <!-- =========================
+             NUTRITION TIP
+        ========================= -->
+
+        {% if nutrition_tip %}
+
+        <div style="margin-top: 30px;">
+
+            <h2 style="margin-bottom: 15px;">
+                Nutrition Tip
+            </h2>
+
+            <div
+                style="
+                    background: rgba(57,232,121,0.05);
+                    border: 1px solid rgba(57,232,121,0.18);
+                    border-radius: 14px;
+                    padding: 20px;
+                    color: #ccebd8;
+                    line-height: 1.7;
+                "
+            >
+                {{ nutrition_tip }}
+            </div>
+
+        </div>
+
+        {% endif %}
+
+
+        <!-- =========================
+             SUCCESS MESSAGE
+        ========================= -->
+
+        {% if success_message %}
+
+        <div
+            style="
+                margin-top: 25px;
+                padding: 14px 16px;
+                border-radius: 10px;
+                background: rgba(57,232,121,0.08);
+                border: 1px solid rgba(57,232,121,0.20);
+                color: var(--green);
+            "
+        >
+            {{ success_message }}
+        </div>
+
+        {% endif %}
+
+
+        <!-- =========================
+             ERROR MESSAGE
+        ========================= -->
+
+        {% if error %}
+
+        <div class="error-message" style="margin-top: 25px;">
+            {{ error }}
+        </div>
+
+        {% endif %}
+
+
+        <!-- =========================
+             ACTION BUTTONS
+        ========================= -->
+
+        <div class="result-actions">
+
+            <a
+                href="/"
+                class="back-btn"
+            >
+                ← Create Another Plan
+            </a>
+
+
+            <a
+                href="/view-all-users"
+                class="back-btn"
+            >
+                View All Users and Plans →
+            </a>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    FitBuddy AI • Personalized fitness planning
+
+</footer>
+
 </body>
 </html>
