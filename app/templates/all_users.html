@@ -5,18 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FitBuddy - All Users</title>
-
-```
 <style>
     :root {
         --bg: #110707;
         --bg2: #170b0b;
-        --card: #201010;
+        --card: #f10505;
         --text: #f7f2f2;
         --muted: #a39191;
         --red: #ff3b3b;
         --red2: #d91f1f;
-        --line: rgba(255,255,255,0.08);
+        --line: rgba(255, 255, 255, 0.08);
     }
 
     * {
@@ -27,20 +25,18 @@
 
     body {
         font-family: Arial, sans-serif;
-
         background:
             radial-gradient(
                 circle at 20% 10%,
-                rgba(255,59,59,0.10),
+                rgba(255, 59, 59, 0.10),
                 transparent 30%
             ),
             radial-gradient(
                 circle at 80% 20%,
-                rgba(217,31,31,0.08),
+                rgba(217, 31, 31, 0.08),
                 transparent 30%
             ),
             var(--bg);
-
         color: var(--text);
         min-height: 100vh;
     }
@@ -48,28 +44,21 @@
     .navbar {
         height: 72px;
         border-bottom: 1px solid var(--line);
-
         display: flex;
         align-items: center;
         justify-content: space-between;
-
         padding: 0 7%;
-
-        background: rgba(17,7,7,0.9);
+        background: rgba(17, 7, 7, 0.9);
     }
 
-    /* =========================
-       FITBUDDY LOGO
-    ========================= */
+    /* FITBUDDY LOGO */
 
     .logo {
         display: flex;
         align-items: center;
         gap: 10px;
-
         color: var(--red);
         text-decoration: none;
-
         font-size: 24px;
         font-weight: 800;
     }
@@ -91,7 +80,6 @@
         display: flex;
         align-items: baseline;
         gap: 5px;
-
         color: var(--red);
         text-decoration: none;
     }
@@ -142,34 +130,23 @@
     .back-btn {
         color: var(--red);
         text-decoration: none;
-
-        border: 1px solid rgba(255,59,59,0.35);
-
+        border: 1px solid rgba(255, 59, 59, 0.35);
         padding: 12px 18px;
-
         border-radius: 10px;
-
         transition: 0.2s ease;
     }
 
     .back-btn:hover {
-        background: rgba(255,59,59,0.08);
-
-        box-shadow:
-            0 0 15px rgba(255,59,59,0.15);
+        background: rgba(255, 59, 59, 0.08);
+        box-shadow: 0 0 15px rgba(255, 59, 59, 0.15);
     }
 
     .table-card {
-        background: rgba(32,16,16,0.9);
-
+        background: rgba(32, 16, 16, 0.9);
         border: 1px solid var(--line);
-
         border-radius: 18px;
-
         overflow-x: auto;
-
-        box-shadow:
-            0 20px 60px rgba(0,0,0,0.25);
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
     }
 
     table {
@@ -180,25 +157,17 @@
 
     th {
         text-align: left;
-
         padding: 18px;
-
         color: var(--red);
-
-        background: rgba(255,59,59,0.05);
-
+        background: rgba(255, 59, 59, 0.05);
         border-bottom: 1px solid var(--line);
-
         white-space: nowrap;
     }
 
     td {
         padding: 18px;
-
         border-bottom: 1px solid var(--line);
-
         color: #eadcdc;
-
         vertical-align: top;
     }
 
@@ -208,25 +177,17 @@
 
     .plan {
         max-width: 450px;
-
         max-height: 180px;
-
         overflow-y: auto;
-
         white-space: pre-wrap;
-
         color: var(--muted);
-
         line-height: 1.5;
     }
 
     .user-id {
         color: var(--red);
-
         font-weight: 800;
-
-        text-shadow:
-            0 0 8px rgba(255,59,59,0.35);
+        text-shadow: 0 0 8px rgba(255, 59, 59, 0.35);
     }
 
     .name {
@@ -236,32 +197,24 @@
 
     .delete-btn {
         background: transparent;
-
         color: #ff7777;
-
-        border: 1px solid rgba(255,119,119,0.35);
-
+        border: 1px solid rgba(255, 119, 119, 0.35);
         padding: 9px 14px;
-
         border-radius: 8px;
-
         cursor: pointer;
     }
 
     .delete-btn:hover {
-        background: rgba(255,119,119,0.1);
+        background: rgba(255, 119, 119, 0.1);
     }
 
     .empty {
         text-align: center;
-
         padding: 60px 20px;
-
         color: var(--muted);
     }
 
     @media (max-width: 700px) {
-
         .navbar {
             padding: 0 20px;
         }
@@ -282,157 +235,129 @@
         }
     }
 </style>
-```
 
 </head>
 
 <body>
 
 <nav class="navbar">
+    <a href="/" class="logo">
+        <span class="logo-icon">✦</span>
 
-```
-<a href="/" class="logo">
-
-    <span class="logo-icon">✦</span>
-
-    <span class="logo-text">
-        FitBuddy <small>AI</small>
-    </span>
-
-</a>
-```
-
+        <span class="logo-text">
+            FitBuddy <small>AI</small>
+        </span>
+    </a>
 </nav>
 
 <main class="container">
 
-```
-<div class="top">
+    <div class="top">
+        <div>
+            <h1>All Users</h1>
 
-    <div>
+            <p class="subtitle">
+                View your saved FitBuddy users and workout plans.
+            </p>
+        </div>
 
-        <h1>
-            All Users
-        </h1>
-
-        <p class="subtitle">
-            View your saved FitBuddy users and workout plans.
-        </p>
-
+        <a href="/" class="back-btn">
+            ← Back to Form
+        </a>
     </div>
 
-    <a href="/" class="back-btn">
-        ← Back to Form
-    </a>
+    <div class="table-card">
 
-</div>
+        {% if users %}
 
+        <table>
 
-<div class="table-card">
+            <thead>
+                <tr>
+                    <th>User ID</th>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Weight</th>
+                    <th>Goal</th>
+                    <th>Intensity</th>
+                    <th style="text-align: center;">Workout Plan</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
 
-    {% if users %}
+            <tbody>
 
-    <table>
+                {% for user in users %}
 
-        <thead>
+                <tr>
 
-            <tr>
-                <th>User ID</th>
-                <th>Name</th>
-                <th>Age</th>
-                <th>Weight</th>
-                <th>Goal</th>
-                <th>Intensity</th>
-                <th style="text-align: center;">Workout Plan</th>
-                <th>Action</th>
-            </tr>
+                    <td class="user-id">
+                        {{ user.id }}
+                    </td>
 
-        </thead>
+                    <td class="name">
+                        {{ user.name }}
+                    </td>
 
+                    <td>
+                        {{ user.age }}
+                    </td>
 
-        <tbody>
+                    <td>
+                        {{ user.weight }}
+                    </td>
 
-            {% for user in users %}
+                    <td>
+                        {{ user.goal }}
+                    </td>
 
-            <tr>
+                    <td>
+                        {{ user.intensity }}
+                    </td>
 
-                <td class="user-id">
-                    {{ user.id }}
-                </td>
+                    <td>
+                        <div class="plan">
+                            {{ user.original_plan }}
+                        </div>
+                    </td>
 
-                <td class="name">
-                    {{ user.name }}
-                </td>
-
-                <td>
-                    {{ user.age }}
-                </td>
-
-                <td>
-                    {{ user.weight }}
-                </td>
-
-                <td>
-                    {{ user.goal }}
-                </td>
-
-                <td>
-                    {{ user.intensity }}
-                </td>
-
-                <td>
-    <div class="plan">
-        {{ user.original_plan }}
-    </div>
-</td>
-
-                <td>
-
-                    <form
-                        action="/delete-user/{{ user.id }}"
-                        method="post"
-                        onsubmit="return confirm('Delete this user and their plans?');"
-                    >
-
-                        <button
-                            type="submit"
-                            class="delete-btn"
+                    <td>
+                        <form
+                            action="/delete-user/{{ user.id }}"
+                            method="post"
+                            onsubmit="return confirm('Delete this user and their plans?');"
                         >
-                            Delete
-                        </button>
+                            <button
+                                type="submit"
+                                class="delete-btn"
+                            >
+                                Delete
+                            </button>
+                        </form>
+                    </td>
 
-                    </form>
+                </tr>
 
-                </td>
+                {% endfor %}
 
-            </tr>
+            </tbody>
 
-            {% endfor %}
+        </table>
 
-        </tbody>
+        {% else %}
 
-    </table>
+        <div class="empty">
+            <h2>No users found</h2>
 
-    {% else %}
+            <p>
+                Generate a workout plan first to create a user.
+            </p>
+        </div>
 
-    <div class="empty">
-
-        <h2>
-            No users found
-        </h2>
-
-        <p>
-            Generate a workout plan first to create a user.
-        </p>
+        {% endif %}
 
     </div>
-
-    {% endif %}
-
-</div>
-```
 
 </main>
-
 </body>
 </html>
